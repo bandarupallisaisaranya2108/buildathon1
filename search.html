@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Events</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center">Search Events</h1>
+        <form method="GET" action="/search" class="row g-3 mb-4">
+            <div class="col-12 col-sm-6 col-md-3">
+                <input type="text" name="query" class="form-control" placeholder="Search by name" value="">
+            </div>
+            <div class="col-12 col-sm-6 col-md-3">
+                <input type="text" name="location" class="form-control" placeholder="Search by location" value="">
+            </div>
+            <div class="col-12 col-sm-6 col-md-3">
+                <select name="category" class="form-select">
+                    <option value="">All Categories</option>
+                    <option value="Technical">Technical</option>
+                    <option value="Cultural">Cultural</option>
+                    <option value="Sports">Sports</option>
+                </select>
+            </div>
+            <div class="col-12 col-sm-6 col-md-2">
+                <input type="date" name="date" class="form-control" value="">
+            </div>
+            <div class="col-12 col-sm-6 col-md-1">
+                <button type="submit" class="btn btn-primary w-100">Search</button>
+            </div>
+        </form>
+
+        <div class="d-flex justify-content-center">
+            <div class="card mb-4" style="width: 18rem;">
+                <img src="{{ event.image }}" class="card-img-top" alt="Event Image">
+                <div class="card-body">
+                    <h5 class="card-title">{{ event.name }}</h5>
+                    <p class="card-text">{{ event.description[:100] }}...</p>
+                    <p><strong>Date:</strong> {{ event.date }} <strong>Time:</strong> {{ event.time }}</p>
+                    <p><strong>Location:</strong> {{ event.location }}</p>
+                    <a href="/event/{{ event.id }}" class="btn btn-primary">View Details</a>
+                </div>
+            </div>
+        </div>
+
+        <p class="text-center">No events found matching your criteria.</p>
+    </div>
+</body>
+</html>
